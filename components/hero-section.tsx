@@ -1,8 +1,13 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Code2 } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 export function HeroSection() {
+  const { t, language } = useLanguage()
+  
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-background via-card to-background py-20 lg:py-32">
       {/* Background Pattern */}
@@ -20,44 +25,40 @@ export function HeroSection() {
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
               <Code2 className="h-4 w-4" />
-              {"Driving Digital Transformation"}
+              {t('hero.badge')}
             </div>
 
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-bold font-[var(--font-playfair)] text-balance leading-tight">
-                {"Welcome to the "}
-                <span className="text-primary">{"Oman Developers"}</span>
-                {" Club"}
+                {t('hero.title')}
               </h1>
               <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-                {
-                  "Join our vibrant community of developers, innovators, and tech enthusiasts working together to drive real digital transformation across Oman."
-                }
+                {t('hero.description')}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="group">
-                {"Join Our Community"}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                {t('hero.join')}
+                <ArrowRight className={`h-4 w-4 transition-transform ${language === 'ar' ? 'mr-2 group-hover:-translate-x-1 rotate-180' : 'ml-2 group-hover:translate-x-1'}`} />
               </Button>
               <Button variant="outline" size="lg">
-                {"Explore Groups"}
+                {t('hero.explore')}
               </Button>
             </div>
 
             <div className="flex items-center gap-8 pt-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">{"5"}</div>
-                <div className="text-sm text-muted-foreground">{"Specialized Groups"}</div>
+                <div className="text-2xl font-bold text-primary">6</div>
+                <div className="text-sm text-muted-foreground">{t('hero.groups')}</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">{"1000+"}</div>
-                <div className="text-sm text-muted-foreground">{"Active Members"}</div>
+                <div className="text-2xl font-bold text-primary">520+</div>
+                <div className="text-sm text-muted-foreground">{t('hero.members')}</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">{"4"}</div>
-                <div className="text-sm text-muted-foreground">{"Platforms"}</div>
+                <div className="text-2xl font-bold text-primary">4</div>
+                <div className="text-sm text-muted-foreground">{t('hero.platforms')}</div>
               </div>
             </div>
           </div>
@@ -66,7 +67,7 @@ export function HeroSection() {
             <div className="relative z-10 bg-card rounded-2xl p-8 shadow-2xl border">
               <Image
                 src="/images/logo.png"
-                alt="Oman Developers Club Logo"
+                alt={t('header.title')}
                 width={300}
                 height={300}
                 className="w-full h-auto"

@@ -1,84 +1,90 @@
+"use client"
+
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 const groups = [
   {
-    name: "Localhost",
-    description:
-      "The general group for everyone in our community. A welcoming space for developers of all levels to connect, share ideas, and collaborate.",
-    image: "/images/localhost.png",
+    key: "localhost",
+    image: "/images/logo.png",
     color: "bg-primary/5 border-primary/20",
+    href: "https://chat.whatsapp.com/D2kpIpiqXYa8SRl1wg0bLM",
   },
   {
-    name: "Learn Together",
-    description:
-      "Focused on knowledge sharing and collaborative learning. Join study groups, workshops, and mentorship programs to grow your skills.",
-    image: "/images/learn-together.png",
+    key: "learn",
+    image: "/images/learn.png",
     color: "bg-accent/5 border-accent/20",
+    href: "https://chat.whatsapp.com/EAjJqofWvX8JiWaejGbTa1",
   },
   {
-    name: "Jobs",
-    description:
-      "Your gateway to career opportunities and hiring in Oman's tech sector. Connect with employers and discover your next role.",
+    key: "jobs",
     image: "/images/jobs.png",
     color: "bg-secondary/5 border-secondary/20",
+    href: "https://chat.whatsapp.com/GmHzCQNc6B1Ho64nXh6I1o",
   },
   {
-    name: "Open Source Software",
-    description:
-      "Supporting and contributing to open-source projects. Collaborate on meaningful projects that benefit the global developer community.",
+    key: "oss",
     image: "/images/oss.png",
     color: "bg-chart-1/5 border-chart-1/20",
+    href: "https://chat.whatsapp.com/GbBqjD3P6kcFd4ooo54TO4",
   },
   {
-    name: "Business & Software Integrations",
-    description:
-      "For developers working on integrations across government and private organizations. Bridging the gap between business needs and technical solutions.",
-    image: "/images/business.png",
+    key: "business",
+    image: "/images/busness.png",
     color: "bg-chart-2/5 border-chart-2/20",
+    href: "https://chat.whatsapp.com/DHVx35DuLYW6NgMmndM6Vg",
+  },
+  {
+    key: "integration",
+    image: "/images/softwar_integrations.png",
+    color: "bg-chart-3/5 border-chart-3/20",
+    href: "https://chat.whatsapp.com/EAzZsPUXclO401N1m9kUZu",
   },
 ]
 
 export function GroupsSection() {
+  const { t, language } = useLanguage()
+  
   return (
     <section id="groups" className="py-20">
       <div className="container">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold font-[var(--font-playfair)] text-balance">
-            {"Our Specialized Groups"}
+            {t('groups.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-            {
-              "Five focused communities, each with its own expertise and mission, working together towards digital excellence."
-            }
+            {t('groups.subtitle')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {groups.map((group, index) => (
+          {groups.map((group) => (
             <Card
-              key={group.name}
+              key={group.key}
               className={`group hover:shadow-lg transition-all duration-300 ${group.color} hover:scale-[1.02]`}
             >
               <CardHeader className="text-center pb-4">
                 <div className="w-20 h-20 mx-auto mb-4 relative">
                   <Image
                     src={group.image || "/placeholder.svg"}
-                    alt={`${group.name} logo`}
+                    alt={t(`groups.${group.key}.name`)}
                     width={80}
                     height={80}
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <CardTitle className="text-xl font-semibold">{group.name}</CardTitle>
+                <CardTitle className="text-xl font-semibold">{t(`groups.${group.key}.name`)}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <CardDescription className="text-sm leading-relaxed">{group.description}</CardDescription>
-                <Button variant="ghost" className="w-full group-hover:bg-primary/10 transition-colors">
-                  {"Join Group"}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <CardDescription className="text-sm leading-relaxed">{t(`groups.${group.key}.description`)}</CardDescription>
+                <Button variant="ghost" className="w-full group-hover:bg-primary/10 transition-colors" asChild>
+                  <a href={group.href} target="_blank" rel="noopener noreferrer">
+                    {t('groups.join')}
+                    <ArrowRight className={`h-4 w-4 transition-transform ${language === 'ar' ? 'mr-2 group-hover:-translate-x-1 rotate-180' : 'ml-2 group-hover:translate-x-1'}`} />
+                  </a>
                 </Button>
               </CardContent>
             </Card>
