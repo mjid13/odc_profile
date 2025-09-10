@@ -1,0 +1,14 @@
+# Global code owners
+# These users will be requested for review on all PRs
+* @Oman-OpenSoftware/maintainers
+
+# Specific file types
+*.md @Oman-OpenSoftware/docs
+*.yml @Oman-OpenSoftware/devops
+*.yaml @Oman-OpenSoftware/devops
+.github/ @Oman-OpenSoftware/devops
+
+# Configuration files
+package.json @Oman-OpenSoftware/maintainers
+tsconfig.json @Oman-OpenSoftware/maintainers
+next.config.ts @Oman-OpenSoftware/maintainers

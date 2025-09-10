@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Branch Protection
+
+This repository uses branch protection rules to ensure code quality and maintain a clean git history. See [BRANCH_PROTECTION.md](./BRANCH_PROTECTION.md) for details on the protection rules and how to configure them.
+
+**Key requirements for contributions:**
+- All changes must go through pull requests
+- PRs require 1-2 approving reviews
+- All automated checks must pass (lint, type check, build)
+- Squash merge strategy is enforced for clean history
+
 ## Getting Started
 
 First, run the development server:
